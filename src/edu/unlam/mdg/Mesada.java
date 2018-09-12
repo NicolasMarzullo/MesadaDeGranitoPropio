@@ -1,7 +1,7 @@
 package edu.unlam.mdg;
 
 
-public class Mesada {
+public class Mesada implements Comparable<Mesada> {
 	private int largo;
 	private int ancho;
 	
@@ -22,45 +22,24 @@ public class Mesada {
 		return "Largo: " + this.largo + " Ancho: " + this.ancho;
 	}
 
-	/*public static int pilaMinima(Mesada[] mesadas) {
-		int cantidadDePilas = 0;//
-		Mesada[] mesadasRestantes = mesadas;
+	
+	@Override
+	public int compareTo(Mesada otra) {
+		int aux;
 		
-		for(int i = 0; i < mesadas.length; i ++) {
-			if(mesadasRestantes[i].largo != -1) {
-				for(int j = i + 1; j < mesadas.length; j ++) {
-					if((mesadasRestantes[i].largo >= mesadasRestantes[j].largo && mesadasRestantes[i].ancho >= mesadasRestantes[j].ancho) ||
-							(mesadasRestantes[i].largo >= mesadasRestantes[j].ancho && mesadasRestantes[i].ancho >= mesadasRestantes[j].largo)) {
-						mesadasRestantes[j].largo = -1;
-						mesadasRestantes[j].ancho = -1;
-					}//fin if
-				}
-				
-				cantidadDePilas ++;
-			}//fin 	if(mesadasRestantes[i].largo != -1)	
+		if(this.ancho>this.largo) {	//los roto
+			aux = this.ancho;
+			this.ancho =this.largo;
+			this.largo = aux;
+			
 		}
+			
+		if(this.largo < otra.largo)	//los comparo
+			return -1;
+		if(this.largo > otra.largo)
+			return 1;
 		
-		return cantidadDePilas;
-	}*/
-	
-	public boolean esMasGrandeQue(Mesada otra) {
-		if(this.largo== otra.ancho || this.ancho == otra.largo ||
-			this.largo == otra.largo || this.ancho == otra.ancho)
-			return Math.abs(this.largo-this.ancho) > Math.abs(otra.largo-otra.ancho);
-		
-		if((this.largo > otra.largo && this.ancho < otra.ancho) || 
-			(this.largo < otra.largo && this.ancho > otra.ancho))
-			return Math.abs(this.largo-this.ancho) < Math.abs(otra.largo-otra.ancho);
-		
-		if(this.largo > otra.largo && this.ancho > otra.ancho)
-			return true;
-		
-		return false;
-	}
-	
-	public boolean esApilableCon(Mesada otra) {
-		return (otra.largo>= this.largo && otra.ancho >= this.ancho) || 
-				(otra.largo >= this.ancho && otra.ancho >= this.largo);
+		return this.ancho < otra.ancho ? -1 : 1; 
 	}
 	
 	
