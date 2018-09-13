@@ -35,11 +35,15 @@ public class Mesada implements Comparable<Mesada> {
 		}
 			
 		if(this.largo < otra.largo)	//los comparo
-			return -1;
-		if(this.largo > otra.largo)
 			return 1;
+		if(this.largo > otra.largo)
+			return -1;
 		
-		return this.ancho < otra.ancho ? -1 : 1; 
+		return this.ancho < otra.ancho ? 1 : -1; 
+	}
+	
+	public boolean esApilable(Mesada otra) {
+		return this.largo <= otra.largo && this.ancho <= otra.ancho;
 	}
 	
 	
