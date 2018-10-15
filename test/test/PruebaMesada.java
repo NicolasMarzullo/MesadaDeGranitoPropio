@@ -72,5 +72,17 @@ public class PruebaMesada {
 				"test/lotes/out/03_ElegirLaMejorAgrupacion.out"));
 	}
 	
+	@Test
+	public void testCasoQueRevientaAlgoritmo( ) throws IOException {
+		Apilamiento apilamiento = ArchivoMesada.leer("test/lotes/in/04_CasoQueRevientaAlgoritmo.in");
+		
+		ArchivoMesada.escribir("test/lotes/out/04_CasoQueRevientaAlgoritmo.out",
+				apilamiento.apilar());
+		
+		Assert.assertEquals(true, 
+		ArchivoMesada.testIgualdadArchivos("test/lotes/expected/04_CasoQueRevientaAlgoritmo.out",
+				"test/lotes/out/04_CasoQueRevientaAlgoritmo.out"));
+	}
+	
 
 }
